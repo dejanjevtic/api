@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -54,7 +55,7 @@ class Handler extends ExceptionHandler
                         'errors'=>'Model not found'
                         ],Response::HTTP_NOT_FOUND);
                 }
-             if($exception instanceof ModelFoundHttpException){
+             if($exception instanceof NotFoundHttpException){
                     return response()->json([
                         'errors'=>'Incorrect route'
                         ],Response::HTTP_NOT_FOUND);
